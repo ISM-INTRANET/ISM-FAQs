@@ -96,7 +96,8 @@ html {background:#eef3f3;}body {padding:22px 20px;}
 @media(max-width:800px){#ism-faq .ism-banner{grid-template-columns:1fr;padding:28px 6%;gap:22px;}#ism-faq .ism-banner-content{padding:10px 0;}#ism-faq .ism-submit-panel{width:100%;}#ism-faq #ism-submit-frame{height:460px;}}
 </style>
 <style>
-#ism-faq .ism-comments{margin-top:26px;padding-top:20px;border-top:1px solid #d6e6e7;}
+#ism-faq .ism-comments{margin-top:18px;padding-top:14px;border-top:1px solid #d6e6e7;}
+#ism-faq .ism-comments-body{padding-top:16px;}
 #ism-faq .ism-comments-head{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 #ism-faq .ism-comments h3{margin:0;font-size:17px;color:#006f76;}
 #ism-faq .ism-comment-note{font-size:12px;color:#647780;margin:6px 0 14px;}
@@ -110,16 +111,36 @@ html {background:#eef3f3;}body {padding:22px 20px;}
 #ism-faq .ism-comment-form input,#ism-faq .ism-comment-form textarea{background:#fff;color:#183849;border:1px solid #bcd4d6;border-radius:6px;padding:10px 12px;width:100%;font-weight:400;}
 #ism-faq .ism-comment-form input{max-width:340px;}
 #ism-faq .ism-comment-form textarea{min-height:90px;resize:vertical;}
-#ism-faq .ism-comment-form button{justify-self:start;}
+#ism-faq .ism-comment-form button{justify-self:start;padding:4px 8px;font-size:11px;}
 #ism-faq .ism-comment-status{font-size:13px;margin:8px 0;}
 #ism-faq .ism-comment-status[data-error="true"]{color:#a32b2b;}
 #ism-faq .ism-comments button:disabled{opacity:.55;cursor:wait;}
+#ism-faq .ism-comments>[data-comments-toggle],#ism-faq .ism-comments [data-comments-refresh]{padding:4px 8px;font-size:12px;}
+#ism-faq .ism-auth{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:13px;}
+#ism-faq .ism-auth form{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+#ism-faq .ism-auth input{width:190px;padding:9px 10px;border:1px solid #b9d5d5;border-radius:6px;background:#fff;color:#123;}
+#ism-faq .ism-auth-status{flex-basis:100%;margin:0;color:#fff;font-size:12px;}
+#ism-faq .ism-auth-status[data-error="true"]{color:#ffe1e1;}
+#ism-faq .ism-comments-private{border-top:1px solid var(--ism-line);margin-top:16px;padding-top:12px;color:var(--ism-soft);font-size:13px;}
+#ism-faq .ism-submit-panel{background:rgba(255,255,255,.96);border:1px solid rgba(0,65,72,.16);border-radius:10px;padding:18px;box-shadow:0 8px 24px rgba(0,35,40,.14);color:var(--ism-ink);}
+#ism-faq .ism-submit-panel h2{font-size:18px;color:var(--ism-accent);margin:0 0 4px;}
+#ism-faq .ism-submit-panel p{font-size:12px;color:var(--ism-soft);margin:0 0 12px;line-height:1.45;}
+#ism-faq .ism-submit-form{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+#ism-faq .ism-submit-form label{font-size:12px;color:var(--ism-soft);}
+#ism-faq .ism-submit-form label:nth-of-type(3),#ism-faq .ism-submit-form label:nth-of-type(4),#ism-faq .ism-submit-form button,#ism-faq .ism-submit-status{grid-column:1/-1;}
+#ism-faq .ism-submit-form input,#ism-faq .ism-submit-form select,#ism-faq .ism-submit-form textarea{display:block;width:100%;margin-top:4px;border:1px solid var(--ism-line);border-radius:6px;padding:8px 9px;background:#fff;color:var(--ism-ink);font-size:13px;}
+#ism-faq .ism-submit-form textarea{min-height:64px;resize:vertical;}
+#ism-faq .ism-submit-form button{justify-self:start;}
+#ism-faq .ism-submit-status{font-size:12px;margin:0;color:var(--ism-accent);}
+#ism-faq .ism-submit-status[data-error="true"]{color:#a32b2b;}
+#ism-faq .ism-banner #ism-submit-panel{background:transparent;border:0;border-radius:12px;padding:0;box-shadow:none;overflow:hidden;}
 </style>
 <div id="ism-faq">
  <header class="ism-top"><div class="ism-brand"><span class="ism-logo" role="img" aria-label="ISM"></span></div></header>
  <section id="ism-browse">
   <section class="ism-banner" aria-labelledby="ism-page-title"><div class="ism-banner-photo" aria-hidden="true"></div><div class="ism-banner-shade" aria-hidden="true"></div><div class="ism-banner-content"><div class="ism-banner-kicker">INDUSTRIAL SITE MANAGEMENT</div><h1 id="ism-page-title">ISM FAQ</h1><p>Answers to your questions about industrial sites,<br class="ism-desktop-break"> applications and tenant services.</p><p class="ism-banner-kicker" style="margin-top:24px">UPDATED AS OF 23 SEPTEMBER 2026</p></div><aside id="ism-submit-panel" class="ism-submit-panel" aria-label="Submit an FAQ"><iframe id="ism-submit-frame" title="ISM FAQ submission form" src="https://forms.cloud.microsoft/pages/responsepage.aspx?id=BWyvjKSkq0mP4PHdwKtyxKpSdUtxrWdInn91L55PhJVUQTgxU01RTVNWNTZTMFZYTUdLR1hZWUlaWC4u&amp;embed=true" allowfullscreen></iframe></aside></section>
   <div class="ism-hero"><div class="ism-search-copy"><h2>How can we help?</h2><p>Search for an answer or browse by topic below.</p></div><label class="ism-search"><span aria-hidden="true">⌕</span><input id="ism-search-input" type="search" aria-label="Search FAQs" placeholder="Search a question or keyword, e.g. rental, RBF…"></label></div>
+  <div id="ism-auth" class="ism-auth" aria-live="polite"></div>
   <div class="ism-layout"><aside><div class="ism-eyebrow">BROWSE BY TOPIC</div><nav id="ism-categories" class="ism-nav" aria-label="FAQ categories"></nav><div class="ism-filter-row"><label>Content language<select id="ism-language" class="ism-select"><option value="">All languages</option><option value="EN">English</option><option value="BM">Bahasa Melayu</option></select></label></div></aside><main><div class="ism-heading"><h2 id="ism-title">All FAQs</h2><span id="ism-count" class="ism-muted" aria-live="polite"></span></div><div id="ism-results"></div></main></div>
  </section>
 
@@ -128,7 +149,7 @@ html {background:#eef3f3;}body {padding:22px 20px;}
 <script>
 // Microsoft Forms handles responses. Embedding does not publish submissions to the FAQ.
 const CONFIG = {
-  submissionFormUrl: "https://forms.cloud.microsoft/r/AYiHEnJeUA"
+  submissionTable: "faq_submissions"
 };
 
 (()=>{
@@ -196,25 +217,65 @@ const COMMENTS = {
  url:'https://pmrfeufxduhmlortgngp.supabase.co',
  key:'sb_publishable_MChTZX5-d28CdlYkw1AHWg_Ls727sbz'
 };
+const AUTH_STORAGE='ismFaqAuthSession';
+let authSession=null,authMember=false;
+try{authSession=JSON.parse(localStorage.getItem(AUTH_STORAGE)||'null');}catch(_){authSession=null;}
+function authHeaders(extra={}){return {apikey:COMMENTS.key,...(authSession?.access_token?{Authorization:'Bearer '+authSession.access_token}:{}),...extra};}
+async function authRequest(path,options={}){
+ const response=await fetch(COMMENTS.url+path,{...options,headers:authHeaders(options.headers||{})});
+ let body=null;try{body=await response.json();}catch(_){ }
+ if(!response.ok)throw new Error(body?.msg||body?.error_description||body?.message||'Sign-in failed.');
+ return body;
+}
+async function checkMembership(){
+ if(!authSession?.user?.id||!authSession?.access_token){authMember=false;return false;}
+ try{
+  const rows=await authRequest('/rest/v1/sdt_members?select=user_id&user_id=eq.'+encodeURIComponent(authSession.user.id));
+  authMember=Array.isArray(rows)&&rows.some(row=>row.user_id===authSession.user.id);
+ }catch(_){authMember=false;}
+ if(!authMember){authSession=null;localStorage.removeItem(AUTH_STORAGE);}
+ return authMember;
+}
+function authBar(){
+ const host=el('ism-auth');
+ if(authMember){host.innerHTML='<span>SDT access enabled</span><button type="button" class="ism-button" data-auth-signout>Sign out</button>';return;}
+ host.innerHTML='<form data-auth-form><strong>SDT Access</strong><input name="email" type="email" autocomplete="username" placeholder="Email Address" required><input name="password" type="password" autocomplete="current-password" placeholder="Password" required><button type="submit" class="ism-button ism-primary">Sign in</button><span class="ism-auth-status" role="status"></span></form>';
+}
+function authStatus(message,error=false){const node=root.querySelector('.ism-auth-status');if(node){node.textContent=message;node.dataset.error=String(error);}}
+function displayName(){const metadata=authSession?.user?.user_metadata||{};return String(metadata.display_name||metadata.full_name||metadata.name||authSession?.user?.email||'SDT member').trim();}
+async function signOut(){authSession=null;authMember=false;localStorage.removeItem(AUTH_STORAGE);authBar();render();}
+el('ism-auth').addEventListener('click',e=>{if(e.target.closest('[data-auth-signout]'))signOut();});
+el('ism-auth').addEventListener('submit',async e=>{
+ if(!e.target.matches('[data-auth-form]'))return;e.preventDefault();
+ const form=e.target;const button=form.querySelector('button');button.disabled=true;authStatus('Signing in…');
+ try{
+  const result=await authRequest('/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:form.elements.email.value.trim(),password:form.elements.password.value})});
+  authSession=result;localStorage.setItem(AUTH_STORAGE,JSON.stringify(result));
+  if(!await checkMembership())throw new Error('This account is not on the SDT access list.');
+  authBar();render();
+ }catch(error){authSession=null;authMember=false;localStorage.removeItem(AUTH_STORAGE);authStatus(error.message,true);}
+ finally{button.disabled=false;}
+});
 const commentDrafts=new Map();
 const pendingPosts=new Set();
 const lastPost=new Map();
 function commentPanel(key){
+ if(!authMember)return '';
  return `<section class="ism-comments" data-faq="${key}" aria-label="Comments on this FAQ">
+ <button type="button" class="ism-button" data-comments-toggle aria-expanded="false" aria-controls="comments-${key.replace(':','-')}">Show comments</button>
+ <div class="ism-comments-body" id="comments-${key.replace(':','-')}" hidden>
  <div class="ism-comments-head"><h3>Comments</h3><button type="button" class="ism-button" data-comments-refresh>Refresh</button></div>
- <p class="ism-comment-note">Comments appear publicly. Names are entered by visitors and are not verified.</p>
- <div class="ism-comment-list"></div><button type="button" class="ism-button" data-comments-more hidden>Older comments</button>
+ <div class="ism-comment-list"></div><button type="button" class="ism-button" data-comments-more hidden>More comments</button>
  <form class="ism-comment-form">
- <label>Your name<input name="author_name" maxlength="80" required autocomplete="name" placeholder="Enter your name"></label>
  <label>Comment<textarea name="comment_text" maxlength="2000" required placeholder="Add a comment about this FAQ…"></textarea></label>
  <button type="submit" class="ism-button ism-primary">Post comment</button>
- </form><p class="ism-comment-status" role="status" aria-live="polite"></p></section>`;
+ </form><p class="ism-comment-status" role="status" aria-live="polite"></p></div></section>`;
 }
 async function commentsRequest(query,options={}){
  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),15000);
  try{
   const response=await fetch(COMMENTS.url+'/rest/v1/faq_comments'+query,{
-   ...options,signal:controller.signal,headers:{apikey:COMMENTS.key,...options.headers}
+   ...options,signal:controller.signal,headers:authHeaders(options.headers||{})
   });
   if(!response.ok)throw new Error('Request failed ('+response.status+').');
   return response.status===204?null:await response.json();
@@ -228,7 +289,7 @@ async function loadComments(panel,append=false){
  refresh.disabled=true;more.disabled=true;
  const offset=append?Number(panel.dataset.offset||0):0;
  try{
-  const query=new URLSearchParams({select:'id,author_name,comment_text,created_at',faq_id:'eq.'+panel.dataset.faq,order:'created_at.desc,id.desc',limit:'50',offset:String(offset)});
+  const query=new URLSearchParams({select:'id,author_name,comment_text,created_at',faq_id:'eq.'+panel.dataset.faq,order:'created_at.asc,id.asc',limit:'50',offset:String(offset)});
   const rows=await commentsRequest('?'+query);
   const list=panel.querySelector('.ism-comment-list');if(!append)list.replaceChildren();
   for(const row of rows){
@@ -245,30 +306,34 @@ async function loadComments(panel,append=false){
  }catch(error){commentStatus(panel,'Could not load comments. Click Refresh to try again.',true);return false;}
  finally{panel.dataset.loading='false';refresh.disabled=false;more.disabled=false;}
 }
-el('ism-results').addEventListener('toggle',event=>{
- if(event.target.tagName!=='DETAILS'||!event.target.open)return;
- const panel=event.target.querySelector('.ism-comments');if(panel&&!panel.dataset.loaded)loadComments(panel);
-},true);
 el('ism-results').addEventListener('click',event=>{
  const panel=event.target.closest('.ism-comments');if(!panel)return;
+ const toggle=event.target.closest('[data-comments-toggle]');
+ if(toggle){
+  const body=panel.querySelector('.ism-comments-body');const opening=body.hidden;
+  body.hidden=!opening;toggle.setAttribute('aria-expanded',String(opening));
+  toggle.textContent=opening?'Hide comments':'Show comments';
+  if(opening&&!panel.dataset.loaded)loadComments(panel);
+  return;
+ }
  if(event.target.closest('[data-comments-refresh]')){commentStatus(panel,'');loadComments(panel);}
  if(event.target.closest('[data-comments-more]'))loadComments(panel,true);
 });
 el('ism-results').addEventListener('input',event=>{
  const form=event.target.closest('.ism-comment-form');if(!form)return;
- commentDrafts.set(form.closest('.ism-comments').dataset.faq,{name:form.elements.author_name.value,text:form.elements.comment_text.value});
+ commentDrafts.set(form.closest('.ism-comments').dataset.faq,{text:form.elements.comment_text.value});
 });
 el('ism-results').addEventListener('submit',async event=>{
  const form=event.target.closest('.ism-comment-form');if(!form)return;event.preventDefault();
  const panel=form.closest('.ism-comments'),key=panel.dataset.faq;
- const name=form.elements.author_name.value.trim(),comment=form.elements.comment_text.value.trim();
- if(!name||!comment){commentStatus(panel,'Enter your name and comment.',true);return;}
+ const comment=form.elements.comment_text.value.trim();
+ if(!comment){commentStatus(panel,'Enter a comment.',true);return;}
  if(pendingPosts.has(key))return;
  if(Date.now()-(lastPost.get(key)||0)<15000){commentStatus(panel,'Please wait a few seconds before posting again.',true);return;}
  pendingPosts.add(key);const button=form.querySelector('[type="submit"]');button.disabled=true;commentStatus(panel,'Posting…');
  try{
-  await commentsRequest('',{method:'POST',headers:{'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify({faq_id:key,author_name:name,comment_text:comment})});
-  lastPost.set(key,Date.now());commentDrafts.set(key,{name,text:''});
+  await commentsRequest('',{method:'POST',headers:{'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify({faq_id:key,author_name:displayName(),comment_text:comment})});
+  lastPost.set(key,Date.now());commentDrafts.set(key,{text:''});
   const current=Array.from(root.querySelectorAll('.ism-comments')).find(p=>p.dataset.faq===key)||panel;
   current.querySelector('textarea').value='';commentStatus(current,'Comment posted.');
   await loadComments(current);
@@ -291,15 +356,16 @@ function render(){
   return `<details ${i===0?'open':''}><summary class="cursor-interaction">${safe(d[5])}</summary><div class="ism-answer"><div class="ism-tags"><span class="ism-tag">${d[0]}</span></div>${slideAnswer}${commentPanel(`${d[1]}:${d[4]}`)}</div></details>`;
  }).join('')||'<div class="ism-empty">No matching FAQs. Try a broader keyword or change the filters.</div>';
  for(const panel of root.querySelectorAll('.ism-comments')){
-  const draft=commentDrafts.get(panel.dataset.faq);
-  if(draft){panel.querySelector('input').value=draft.name;panel.querySelector('textarea').value=draft.text;}
+ const draft=commentDrafts.get(panel.dataset.faq);
+  if(draft)panel.querySelector('textarea').value=draft.text;
   panel.querySelector('[type="submit"]').disabled=pendingPosts.has(panel.dataset.faq);
  }
- const first=root.querySelector('details[open] .ism-comments');if(first)loadComments(first);
 }
 el('ism-categories').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;category=b.dataset.category;root.querySelectorAll('[data-category]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
 ['ism-search-input','ism-language'].forEach(id=>el(id).addEventListener(id==='ism-search-input'?'input':'change',render));
 render();
+authBar();
+if(authSession)checkMembership().then(()=>{authBar();render();});
 })();
 </script>
 <noscript>Please enable JavaScript to search and view the FAQs.</noscript>
