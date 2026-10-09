@@ -6,12 +6,15 @@
 <meta name="description" content="ISM FAQ: answers about industrial sites, applications and tenant services at BEDB.">
 <title>ISM FAQ | BEDB</title>
 <!--
+BUILD: ISM-FAQ-notifications-2026-10-09
+Run 01-notifications-setup.sql first. Then sign in, open Notifications and enable
+"Notify me of all new comments" on Nawi's account. Other members receive mentions.
 GITHUB PAGES SETUP
 1. Upload this file as index.html to your GitHub Pages publishing folder.
 2. The submission form is embedded in the banner; update its iframe address if changing forms.
 3. Edit the FAQ CONTENT array to add or update questions.
 Submissions are handled by your Microsoft Form and its separately configured flow.
-FAQ submissions use Microsoft Forms. Public comments are sent to the configured Supabase project.
+FAQ submissions use Microsoft Forms. SDT-only comments are sent to the configured Supabase project.
 Comment permissions are configured in Supabase. The browser cooldown is a convenience, not server-side spam protection.
 Preserves the FAQ content and slide-specific answer formatting from the previous version.
 -->
@@ -135,13 +138,40 @@ html {background:#eef3f3;}body {padding:22px 20px;}
 #ism-faq .ism-submit-status[data-error="true"]{color:#a32b2b;}
 #ism-faq .ism-banner #ism-submit-panel{background:transparent;border:0;border-radius:12px;padding:0;box-shadow:none;overflow:hidden;}
 </style>
+
+<style>
+/* Notification and mention controls — 9 October 2026 */
+#ism-faq .ism-auth{padding:0 7%;margin-bottom:4px;}
+#ism-faq .ism-auth-status{color:#33545d;}
+#ism-faq .ism-auth-status[data-error="true"]{color:#a32b2b;}
+#ism-faq .ism-small{font-size:12px;padding:5px 9px;border-radius:6px;cursor:pointer;}
+#ism-faq #ism-notification-wrap{position:relative;}
+#ism-faq #ism-unread{background:#007e84;color:#fff;border-radius:20px;min-width:19px;padding:0 5px;font-size:11px;}
+#ism-faq #ism-notification-panel{position:absolute;z-index:30;right:0;top:calc(100% + 10px);width:380px;max-width:calc(100vw - 36px);padding:16px;background:#fff;border:1px solid #d3e3e4;border-radius:12px;box-shadow:0 12px 36px #163c4930;color:#183849;text-align:left;}
+#ism-faq .ism-inbox-head,#ism-faq .ism-inbox-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;}
+#ism-faq .ism-watch-label{display:flex;align-items:center;gap:8px;font-size:13px;}
+#ism-faq .ism-watch-label input{accent-color:#007e84;}
+#ism-faq .ism-inbox-hint,#ism-faq #ism-inbox-status{font-size:12px;color:#526d73;margin:8px 0 12px;}
+#ism-faq #ism-inbox-list{max-height:350px;overflow:auto;}
+#ism-faq .ism-inbox-item{display:grid;gap:5px;width:100%;border:0;border-bottom:1px solid #e1ebeb;background:#fff;padding:12px 10px;text-align:left;font-size:12px;cursor:pointer;border-radius:5px;overflow-wrap:anywhere;}
+#ism-faq .ism-inbox-item.is-unread{background:#eaf6f5;border-left:3px solid #007e84;}
+#ism-faq .ism-inbox-item time{font-size:11px;color:#60757a;}
+#ism-faq #ism-inbox-more{margin-top:12px;}
+#ism-faq #ism-notification-toast{position:fixed;z-index:40;right:24px;bottom:24px;max-width:calc(100vw - 32px);display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:14px 16px;border-radius:10px;background:#fff;color:#173e48;border:1px solid #9dc8c9;box-shadow:0 8px 30px #003e4929;}
+#ism-faq .ism-mention-list{padding:4px;border:1px solid #bbd4d5;border-radius:8px;background:#fff;max-height:205px;overflow:auto;font-size:13px;}
+#ism-faq .ism-mention-list button{display:block;width:100%;text-align:left;border:0;background:white;border-radius:4px;padding:9px;font-size:13px;cursor:pointer;}
+#ism-faq .ism-mention-list button[aria-selected="true"]{background:#e6f4f3;color:#006c73;}
+#ism-faq .ism-mention-help{font-size:11px;color:#526d73;}
+#ism-faq .ism-comment-highlight{outline:2px solid #00888d;outline-offset:2px;background:#e4f4f2;}
+#ism-faq .ism-comment-form [type="submit"]{font-size:11px;padding:4px 8px;min-height:0;}
+</style>
 <div id="ism-faq">
  <header class="ism-top"><div class="ism-brand"><span class="ism-logo" role="img" aria-label="ISM"></span></div></header>
  <section id="ism-browse">
   <section class="ism-banner" aria-labelledby="ism-page-title"><div class="ism-banner-photo" aria-hidden="true"></div><div class="ism-banner-shade" aria-hidden="true"></div><div class="ism-banner-content"><div class="ism-banner-kicker">INDUSTRIAL SITE MANAGEMENT</div><h1 id="ism-page-title">ISM FAQ</h1><p>Answers to your questions about industrial sites,<br class="ism-desktop-break"> applications and tenant services.</p><p class="ism-banner-kicker" style="margin-top:24px">UPDATED AS OF 23 SEPTEMBER 2026</p></div><aside id="ism-submit-panel" class="ism-submit-panel" aria-label="Submit an FAQ"><iframe id="ism-submit-frame" title="ISM FAQ submission form" src="https://forms.cloud.microsoft/pages/responsepage.aspx?id=BWyvjKSkq0mP4PHdwKtyxKpSdUtxrWdInn91L55PhJVUQTgxU01RTVNWNTZTMFZYTUdLR1hZWUlaWC4u&amp;embed=true" allowfullscreen></iframe></aside></section>
   <div class="ism-hero"><div class="ism-search-copy"><h2>How can we help?</h2><p>Search for an answer or browse by topic below.</p></div><label class="ism-search"><span aria-hidden="true">⌕</span><input id="ism-search-input" type="search" aria-label="Search FAQs" placeholder="Search a question or keyword, e.g. rental, RBF…"></label></div>
   <div id="ism-auth" class="ism-auth" aria-live="polite"></div>
-  <div class="ism-layout"><aside><div class="ism-eyebrow">BROWSE BY TOPIC</div><nav id="ism-categories" class="ism-nav" aria-label="FAQ categories"></nav><div class="ism-filter-row"><label>Content language<select id="ism-language" class="ism-select"><option value="">All languages</option><option value="EN">English</option><option value="BM">Bahasa Melayu</option></select></label></div></aside><main><div class="ism-heading"><h2 id="ism-title">All FAQs</h2><span id="ism-count" class="ism-muted" aria-live="polite"></span></div><div id="ism-results"></div></main></div>
+  <div class="ism-layout"><aside><div class="ism-eyebrow">BROWSE BY TOPIC</div><nav id="ism-categories" class="ism-nav" aria-label="FAQ categories"></nav></aside><main><div class="ism-heading"><h2 id="ism-title">All FAQs</h2><span id="ism-count" class="ism-muted" aria-live="polite"></span></div><div id="ism-results"></div></main></div>
  </section>
 
  <footer class="ism-footer"><span>ISM FAQ · Reference information</span></footer>
@@ -211,6 +241,7 @@ const safe=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&
 const linkify=s=>safe(s).replace(/(?:https?:\/\/|www\.)[^\s<]+/g,match=>{const tail=(match.match(/[.,;:)]*$/)||[''])[0];const url=match.slice(0,match.length-tail.length);const href=url.startsWith('www.')?`https://${url}`:url;return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>${tail}`;}).replace(/(^|[\s(])([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(?=$|[\s.,;)])/g,'$1<a href="mailto:$2">$2</a>');
 const formatAnswer=s=>s.trim().split(/\n{2,}/).map(block=>{const lines=block.split(/[\n\v]/).map(x=>x.trim()).filter(Boolean);if(lines.length===1)return `<p>${linkify(lines[0])}</p>`;if(lines[0].endsWith(':')){const intro=lines.shift();return `<p>${linkify(intro)}</p><ol type="i">${lines.map(x=>`<li>${linkify(x)}</li>`).join('')}</ol>`;}return `<ol type="i">${lines.map(x=>`<li>${linkify(x)}</li>`).join('')}</ol>`;}).join('');
 const richAnswers = {"General:1":"<p>Based on our priority sectors, we have five sectors we believe that are our strengths:</p><ol class=\"ism-list roman\"><li>Downstream oil and gas – whereby you refine petrochemicals to other products i.e. plastics, fertilizers, etc.</li><li>Food – agriculture, aquaculture, farming, and food manufacturing</li><li>Tourism – luxury villa and resort taking advantage of our natural pristine rainforests</li><li>Services – Aviation and Maritime industry</li><li>ICT – innovative businesses within technology such as Artificial Intelligence, Fintech, Robotics, any kind of tech.</li></ol>","General:2":"<p>BEDB through Industrial Site Management aims to continuously to deliver quality services and infrastructure to support local businesses and FDIs through:</p><ol class=\"ism-list roman\"><li>Incubation, and co-working spaces for SMEs (iCentre)</li><li>Industrial land - Provision of vacant land lots;</li><li>Ready built factories</li><li>Commercial rental spaces (such as office spaces, auditorium halls, multipurpose halls, meeting rooms); and</li><li>Commercial units to accommodate local SMEs involved in the production of commercial products.</li></ol>","General:3":"<p>First go to our website <a href=\"https://www.bedb.gov.bn/\" target=\"_blank\" rel=\"noopener noreferrer\">www.bedb.gov.bn</a> and click on the tab ‘Finding Space’ where you can find more information about ‘How to Apply Space’. You should be able to find all the information you need there from eligibility criteria, application process, application form and guidelines on how to apply. Should you need more information you may email the team at <a href=\"mailto:business.assessment@bedb.gov.bn\" target=\"_blank\" rel=\"noopener noreferrer\">business.assessment@bedb.gov.bn</a> or WhatsApp them at +673 8330133</p>","General:4":"<p>Different locations have different costing to them. You can find more information on our website, do head to <a href=\"https://www.bedb.gov.bn/\" target=\"_blank\" rel=\"noopener noreferrer\">www.bedb.gov.bn</a> and click on the ‘How to Apply Space’ tab where you can have a look at the different costing under the Industrial Land. To know how much different locations cost, you may click on the location you are interested in. The space is charged by per m2.</p>","General:5":"<p>The current occupancy rate for BEDB leasable industrial land is 78% and 75% for Ready Built Factories (data as of July 2026)</p>","General:6":"<p>Currently, there a few tenants operating in the Terunjing Industrial Sites.</p><p>BEDB is working closely with relevant stakeholders in developing Terunjing Industrial Sites to support logistics activities and other manufacturing activities.</p>","General:7":"<ol class=\"ism-list roman\"><li>Shareholders/Owner’s Identification Card</li><li>Business Registration Certificate/ Incorporation Certificate</li><li>Shareholders’ Certificate (for Sdn Bhd)</li><li>Latest Annual Return (for Sdn Bhd)</li><li>Tax filing info for past 3 years</li><li>Form X</li><li>Organisation structure</li><li>Company Profile</li><li>JobCentre Screenshot</li><li>Business Reporting Screenshot (Register at <a href=\"https://www.business.gov.bn/SitePages/OBR.aspx\" target=\"_blank\" rel=\"noopener noreferrer\">www.business.gov.bn/SitePages/OBR.aspx</a>)</li><li>Proposed Layout Plan/Approve As Built Plan</li></ol>","General:8":"<ul class=\"ism-list bullet\"><li><strong>Screening Time</strong><br>2–4 weeks upon complete submission of required documentation.</li><li><strong>Assessment and Allocation</strong><br>2–4 weeks* to make the necessary recommendations or allocations based on the assessment findings.</li></ul><p><em>*This timeframe depends on the number of queries raised.</em></p>","General:9":"<p>For new applications:</p><ul class=\"ism-list bullet\"><li>Assessment in terms of commercial and business viability;</li><li>The financial capability of the applicant company; and</li><li>Economic contributions such as job creation, use of local services, and tax revenue.</li></ul><p>For additional applications from companies already in operation:</p><ul class=\"ism-list bullet\"><li>Consideration is given to companies registered as Sendirian Berhad (Sdn Bhd); and</li><li>For applications for ready-built factories, the applicant company must be fully owned by 100 percent local citizens holding the yellow identity card.</li></ul>","General:10":"<p>The Brunei Economic Development Board (BEDB) supports BEDB tenants (both FDIs and SMEs) through ongoing initiatives to ensure site readiness and reduce business costs through the following:</p><p class=\"ism-indent\"><strong>a) Incubation, co working &amp; pre commercial spaces</strong></p><p class=\"ism-indent\">To support micro businesses and high value startups at early stages of business with minimum rental (i-centre)</p><p class=\"ism-indent\"><strong>b) Industrial Land &amp; Ready Built Factories</strong></p><p class=\"ism-indent\">This includes providing basic/essential infrastructure such as road access and utility tapping points (electricity, water). BEDB is also actively identifying gaps and challenges faced by tenants to help lower their capital expenditure through the development of fit-for-purpose of existing facilities and infrastructure.</p>","General:11":"<p>Yes, tenants are allowed to modify the space and will need to submit an application to carry out modification works to the space provided according to their specific operational requirements, subject to compliance with the BEDB Industrial Park Facility Design Guidelines.</p>","General:12":"<p>A total of 716 agreements have been signed with BEDB, representing 537 customers operating across BEDB industrial sites.</p><p>On average, BEDB receives 193 applications, of which 110 are approved. This includes an average of 51 new applications covering New Industrial Land, New RBF Units, New Commercial Units, and Buy-over Buildings.</p>","General:13":"<ul class=\"ism-list bullet\"><li>Pulau Muara Besar Industrial Site – suited for Heavy Special Industries, petrochemicals and supporting activities (Integrated Marine Supply Base, Ship Building, etc)</li><li>SPARK - Heavy Special Industries, Oil &amp; Gas downstream / Petrochemical industries</li></ul>","LegCo:1":"<ul class=\"ism-list bullet\"><li>Bahagian Pengurusan Tapak Perindustrian (ISM) di bawah Lembaga Kemajuan Ekonomi Brunei (LKEB) adalah bertanggungjawab untuk menyediakan dan menguruskan tapak-tapak perindustrian dalam menyokong aktiviti sektor perindustrian dan pembuatan di Negara Brunei Darussalam.</li></ul>","LegCo:2":"<ul class=\"ism-list bullet\"><li>Kemudahan-kemudahan yang disediakan adalah seperti berikut:</li></ul><ul class=\"ism-list bullet\"><li>Penyediaan lot-lot tanah kosong;</li><li>Kilang-kilang siap bina <em>(ready built factories);</em></li><li>Ruang kemudahan untuk disewakan secara komersial (seperti ruang pejabat, dewan auditorium, dewan serba guna, bilik mesyuarat); dan</li><li>Unit-unit komersial untuk menempatkan PMKS tempatan  yang terlibat dalam pengeluaran produk-produk komersial.</li></ul>","LegCo:0":"<p class=\"ism-subheading\"><strong>Daerah Brunei Muara (17)</strong></p><ol class=\"ism-list decimal\"><li>Anggerek Desa Technology Park (ADTP)</li><li>Beribi Industrial Park</li><li>Bengkurong Industrial Park</li><li>Bio Innovation Corridor (BIC)</li><li>Digital Junction</li><li>Kuala Lurah Industrial Park</li><li>Lambak Industrial Park</li><li>Lambak Kanan West Industrial Park</li><li>Lumapas Industrial Park</li><li>Muara Supply Base* (*aset/fasiliti di bawah pentadbiran LKEB)</li><li>Mulaut Industrial Park</li><li>Pulau Muara Besar Industrial Park</li><li>Salambigar Industrial Park</li><li>Salar Industrial Park</li><li>Serasa Industrial Park</li><li>Tanjung Kajar Industrial Park</li><li>Terunjing Industrial Park</li></ol><p class=\"ism-subheading\"><strong>Daerah Tutong (3)</strong></p><ol class=\"ism-list decimal\"><li>Bukit Panggal Industrial Park</li><li>Telisai Industrial Park</li><li>Serambangun Industrial Park</li></ol><p class=\"ism-subheading\"><strong>Daerah Belait (4)</strong></p><ol class=\"ism-list decimal\"><li>Mumong Industrial Park</li><li>Pekan Belait Industrial Park</li><li>Sungai Bera Industrial Park</li><li>Sungai Liang Industrial Park</li></ol><p class=\"ism-subheading\"><strong>Daerah Temburong (2)</strong></p><ol class=\"ism-list decimal\"><li>Batu Apoi Industrial Park</li><li>Labu Square</li></ol>","LegCo:3":"<ul class=\"ism-list bullet\"><li>Bagi ruang kemudahan untuk disewakan secara komersial (seperti ruang pejabat) – pihak LKEB ada <strong>menyediakan kemudahan </strong><strong><em>wifi</em></strong><strong> bagi PMKS/penyewa </strong>untuk menjalankan operasi harian mereka.</li><li>Pihak LKEB juga ada menyediakan <strong>ruang pejabat untuk PMKS/penyewa beroperasi </strong>mengikut keperluan perniagaan mereka<strong>.</strong></li></ul>","LegCo:4":"<ul class=\"ism-list bullet\"><li>Bagi bangunan yang masih mempunyai integriti struktur dan jangka hayat yang baik, pihak LKEB merancang untuk <strong>membaikpulih bangunan-bangunan</strong> tersebut agar dapat <strong>digunakan semula untuk aktiviti seperti pejabat, gudang, kilang dan sebagainya</strong>.</li><li>Cadangan ini bertujuan untuk:</li></ul><ul class=\"ism-list bullet\"><li><strong>Memudahkan penyewa-penyewa berpindah dan membolehkan aktiviti syarikat untuk terus beroperasi</strong>; dan</li><li>Memberikan manfaat kepada LKEB dan juga syarikat-syarikat dari segi <strong>perbelanjaan modal awal yang minima dan kegunaan bangunan secara lebih mampan (</strong><strong><em>sustainable)</em></strong>.</li></ul><ul class=\"ism-list bullet\"><li>Pembaikan pulih bangunan-bangunan ini juga dicadangkan untuk <strong>mengambilkira ciri-ciri mampan seperti </strong><strong><em>solar panel</em></strong><strong>, </strong><strong><em>rain water harvesting</em></strong> dan sebagainya bagi memastikan kecekapan tenaga dalam bangunan tersebut.</li></ul>","LegCo:5":"<ul class=\"ism-list bullet\"><li>Pihak LKEB menggunakan <strong>perkhidmatan sekuriti untuk membuat rondaan mengikut jadual yang ditetapkan</strong> bagi memastikan keselamatan bangunan dan mencegah sebarang pencerobohan atau aktiviti yang tidak diingini di bangunan-bangunan tersebut.</li><li>Pihak LKEB telah <strong>menubuhkan Jawatankuasa Kesihatan, Keselamatan, Sekuriti, dan Alam Sekitar</strong> (<em>Workplace Safety &amp; Health Committee</em>) yang bertanggungjawab untuk menangani isu-isu di tapak-tapak perindustrian LKEB.</li></ul>","LegCo:6":"<ul class=\"ism-list bullet\"><li>Pihak LKEB <strong>mempunyai hubungan yang rapat dengan agensi-agensi pengawalseliaan</strong> seperti Autoriti Kawalan Bangunan dan Industri Pembinaan (ABCi); Jabatan Alam Sekitar, Taman dan Rekreasi (JASTRe); <em>Safety, Health and Environment National Authority (SHENA)</em>; Jabatan Perancang Bandar dan Desa (TCP); serta Jabatan Bomba dan Penyelamat.</li><li>LKEB secara <strong>proaktif berhubung secara berkala dengan agensi-agensi</strong> ini untuk memastikan pemahaman yang jelas dan terkini mengenai sebarang pengemaskinian di dalam peraturan industri.</li></ul>","LegCo:7":"<ul class=\"ism-list bullet\"><li>LKEB menjalankan <strong>lawatan pemeriksaan secara berkala</strong> ke tapak-tapak perindustrian di bawah penyeliaannya.</li><li>Melalui pemeriksaan ini, sebarang pelanggaran peraturan akan dilaporkan dan jika terdapat ketidakpatuhan di premis penyewa, bantuan akan diberikan untuk membantu mereka mengatasi cabaran yang dihadapi, bagi memastikan pematuhan kepada peraturan yang ditetapkan.</li></ul>","LegCo:8":"<ul class=\"ism-list bullet\"><li>Pihak LKEB melaksanakan <strong>sistem pengurusan selaras dengan peraturan dan garis panduan Keselamatan dan Kesihatan Pekerjaan</strong> <em>(Workplace Safety and Health – WSH) </em>untuk menyediakan <strong>Pelan Tindak Balas Kecemasan</strong> <em>(Emergency Response Plan)</em> bagi tapak industri, yang mana di sokong</li></ul>","LegCo:9":"<ul class=\"ism-list bullet\"><li>Bagi permohonan <strong>baru</strong>:</li></ul><ul class=\"ism-list bullet\"><li>Penilaian dari aspek daya maju komersial dan pasaran;</li><li>Keupayaan kewangan syarikat pemohon; dan</li><li>Aliran dan limpahan <em>spin off </em>serta sumbangan kepada aspek ekonomi seperti tenaga kerja, perkhidmatan am, audit &amp; pulangan cukai pendapatan.</li></ul><ul class=\"ism-list bullet\"><li>Bagi permohonan <strong>Tambahan</strong> syarikat yang sedang beroperasi:</li></ul><ul class=\"ism-list bullet\"><li>Pertimbangan diberikan kepada syarikat mempunyai perjanjian pajakan/penyewaan yang masih sah, tidak melanggar syarat perjanjian tersebut, serta tidak mempunyai sebarang tunggakan bayaran pajakan/sewa dan bil utiliti (termasuk elektrik)<strong>;</strong> dan</li><li>pemfailan cukai pendapatan dikemas kini, dan cukai telah dibayar (bagi syarikat Sdn. Bhd.).</li></ul>","LegCo:10":"<ul class=\"ism-list bullet\"><li>Setiap permohonan akan dihadapkan bagi membuat penilaian dan selanjutnya untuk mendapatkan sokongan dari jawatankuasa-jawatankuasa seperti <strong><em>Management Committee (ManCo) and Industrial Site Development and Allocation Committee (ISDAC)</em></strong> – berdasarkan syarat-syarat dan garispandu yang telah ditetapkan.</li><li>Keahlian bagi <strong>ManCo</strong> terdiri dari Pemangku Ketua Pegawai Eksekutif, Timbalan Ketua Pegawai Eksekutif, Pengarah ISM, Pengarah <em>Enterprise Development</em>, Pengarah <em>Corporate Services,</em> Pengarah FAST dan 2 Pengurus Kanan ISM.</li><li>Keahlian <strong>ISDAC*</strong> terdiri daripada wakil-wakil yang berkepentingan termasuk:</li></ul><ul class=\"ism-list bullet\"><li>Timbalan Menteri Kewangan dan Ekonomi (Fiskal), Kementerian Kewangan dan Ekonomi;</li><li>Timbalan Menteri Kewangan dan Ekonomi (Ekonomi), Kementerian Kewangan dan Ekonomi;</li><li>Setiausaha Tetap Kewangan dan Ekonomi (Fiskal I), Kementerian Kewangan dan Ekonomi;</li><li>Setiausaha Tetap Kewangan dan Ekonomi (Ekonomi, Perdagangan dan Industri), Kementerian Kewangan dan Ekonomi;</li><li>Setiausaha Tetap, Kementerian Sumber-Sumber Utama dan Pelancongan;</li><li>Setiausaha Tetap (Perancangan, Guna Tanah dan Alam Sekitar), Kementerian Pembangunan; dan</li><li>Pemangku Ketua Pegawai Eksekutif, LKEB.</li></ul><p><em>*Lantikan keahlian ISDAC sebelum pengumuman rombakan dan pelantikan Menteri-Menteri Kabinet pada 4 Jun 2026  </em></p><ul class=\"ism-list bullet\"><li>Dengan penubuhan jawatankuasa-jawatankuasa tersebut, setiap permohonan disasarkan akan memperolehi kelulusan dalam tempoh <strong>lapan (8) minggu.</strong></li><li>Keputusan permohonan adalah tertakluk kepada <strong>permohonan  yang lengkap, mematuhi syarat yang ditetapkan, serta hasil penilaian dari segi kewangan dan peluang-peluang pekerjaan bagi anak-anak tempatan </strong></li><li>Kriteria yang turut ditumpukan bagi jawatankuasa-jawatankuasa tersebut ialah <strong>pemfailan cukai </strong><strong><em>(tax filing)</em></strong><strong> terkini. </strong></li></ul>","LegCo:11":"<ul class=\"ism-list bullet\"><li>Kadar sewa bagi kilang siap bina secara purata adalah sekitar <strong>BND640.00 hingga BND1,600.00</strong> bergantung kepada lokasi dan saiz ruang yang disewakan.</li></ul>","LegCo:12":"<ul class=\"ism-list bullet\"><li>Hasil kutipan sewa <strong>dilaburkan kembali untuk menampung kos pembangunan projek-projek infrastruktur, penyelenggaraan tapak dan kompleks perindustrian, serta mengekalkan nilai aset-aset</strong> yang terdapat di tapak dan kompleks tersebut.</li><li>Projek penaiktarafan  dan penyelenggaraan yang dilaksanakan termasuk:</li></ul><ul class=\"ism-list bullet\"><li><strong>Menaiktaraf jalan raya</strong> bagi melancarkan lalu lintas dan meningkatkan tahap keselamatan jalanraya di tapak perindustrian;</li><li><strong>Memperbaiki  sistem saliran dan perparitan</strong> untuk menghindari isu banjir di kawasan tapak perindustrian;</li><li><strong>Memperluaskan kawasan tapak perindustrian</strong> dalam memenuhi permintaan untuk lot-lot baru; dan</li><li><strong>Kerja-kerja penyelenggaraan secara berkala</strong> seperti <strong>pemotongan rumput  dan penjagaan kebersihan</strong> untuk memastikan tapak-tapak berkenaan dalam keadaan bersih dan kemas.</li></ul><ul class=\"ism-list bullet\"><li>Sebahagian dari hasil pendapatan tersebut akan dilaburkan dalam <strong>program dan inisiatif pembangunan keupayaan PMKS</strong> yang dikendalikan oleh pihak LKEB.</li></ul>","LegCo:13":"<ul class=\"ism-list bullet\"><li>Pada masa ini terdapat <strong>580 penyewa di 26 tapak perindustrian</strong>. Di bawah ialah bilangan penyewa dan pecahan mengikut sektor industri:</li></ul><p>* Setakat 24 Julai 2026</p><ul class=\"ism-list bullet\"><li>580 jumlah penyewa termasuk PMKS dan syarikat Pelaburan Langsung Asing dan tidak termasuk ex-TOL (Tumpang Lesen Sementara).</li></ul>","LegCo:14":"<ul class=\"ism-list bullet\"><li>Pihak LKEB <strong>m</strong><strong>e</strong><strong>nye</strong><strong>d</strong><strong>i</strong><strong>a</strong><strong>k</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>p</strong><strong>l</strong><strong>atform</strong><strong> </strong><strong>d</strong><strong>a</strong><strong>l</strong><strong>a</strong><strong>m</strong><strong> </strong><strong>ta</strong><strong>l</strong><strong>i</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>i</strong><strong>a</strong><strong>itu</strong><strong> ‘</strong><strong><em>I</em></strong><strong><em>n</em></strong><strong><em>du</em></strong><strong><em>s</em></strong><strong><em>tri</em></strong><strong><em>a</em></strong><strong><em>l Site A</em></strong><strong><em>p</em></strong><strong><em>p</em></strong><strong><em>l</em></strong><strong><em>i</em></strong><strong><em>c</em></strong><strong><em>at</em></strong><strong><em>io</em></strong><strong><em>n </em></strong><strong><em>P</em></strong><strong><em>r</em></strong><strong><em>o</em></strong><strong><em>c</em></strong><strong><em>e</em></strong><strong><em>s</em></strong><strong><em>s</em></strong><strong><em>ing</em></strong><strong><em> </em></strong><strong><em>System’</em></strong><strong> </strong><strong>(</strong><strong><em>I</em></strong><strong><em>n</em></strong><strong><em>S</em></strong><strong><em>i</em></strong><strong><em>teA</em></strong><strong><em>p</em></strong><strong><em>s</em></strong><strong>)</strong> bagi permohonan mendapatkan <strong>tanah</strong><strong> </strong><strong>p</strong><strong>e</strong><strong>r</strong><strong>i</strong><strong>ndu</strong><strong>s</strong><strong>tri</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>d</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>k</strong><strong>i</strong><strong>l</strong><strong>a</strong><strong>ng</strong><strong> </strong><strong>si</strong><strong>a</strong><strong>p</strong><strong> </strong><strong>b</strong><strong>i</strong><strong>na</strong><strong> </strong><strong>di</strong><strong> </strong><strong>ta</strong><strong>p</strong><strong>a</strong><strong>k</strong><strong>-</strong><strong>ta</strong><strong>p</strong><strong>ak p</strong><strong>e</strong><strong>r</strong><strong>i</strong><strong>ndu</strong><strong>s</strong><strong>tri</strong><strong>a</strong><strong>n</strong><strong>nya</strong>.</li><li>Dalam usaha untuk memudahkan <strong>permohonan bagi penyewa-penyewa tanah Lesen Tumpang Sementara (</strong><strong><em>ex-TOL</em></strong><strong>)</strong>, pihak LKEB telah menyediakan <strong>borang permohonan yang ringkas untuk diisi</strong>.</li><li>Proses Permohonan Tapak Industri dan Bangunan Siap Bina adalah seperti berikut:</li></ul><ul class=\"ism-list bullet\"><li>Menghadapkan permohonan yang lengkap <strong>sec</strong><strong>a</strong><strong>ra</strong><strong> </strong><strong>d</strong><strong>a</strong><strong>l</strong><strong>am</strong><strong> </strong><strong>t</strong><strong>a</strong><strong>l</strong><strong>i</strong><strong>an</strong>;</li><li>Permohonan tersebut akan melalui <strong>p</strong><strong>ro</strong><strong>ses</strong><strong> </strong><strong>p</strong><strong>e</strong><strong>nap</strong><strong>i</strong><strong>san</strong> mengikut <strong>senar</strong><strong>a</strong><strong>i</strong><strong> </strong><strong>sem</strong><strong>a</strong><strong>k</strong><strong> </strong><strong>p</strong><strong>e</strong><strong>nil</strong><strong>a</strong><strong>i</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>d</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>l</strong><strong>a</strong><strong>tar</strong><strong> </strong><strong>b</strong><strong>e</strong><strong>l</strong><strong>a</strong><strong>k</strong><strong>a</strong><strong>n</strong><strong>g</strong><strong> </strong><strong>syar</strong><strong>i</strong><strong>k</strong><strong>a</strong><strong>t</strong><strong> </strong><strong>p</strong><strong>e</strong><strong>mo</strong><strong>hon</strong>;</li><li>Proses penilaian &amp; peruntukan berdasarkan <strong>as</strong><strong>p</strong><strong>ek</strong><strong> </strong><strong>k</strong><strong>o</strong><strong>m</strong><strong>e</strong><strong>rsi</strong><strong>a</strong><strong>l/</strong><strong>d</strong><strong>a</strong><strong>y</strong><strong>a tahan p</strong><strong>a</strong><strong>sar</strong><strong>a</strong><strong>n,</strong><strong> </strong><strong>k</strong><strong>e</strong><strong>upa</strong><strong>y</strong><strong>a</strong><strong>a</strong><strong>n  </strong><strong> </strong><strong>k</strong><strong>e</strong><strong>wang</strong><strong>a</strong><strong>n,  </strong><strong> </strong><strong>m</strong><strong>a</strong><strong>n</strong><strong>f</strong><strong>a</strong><strong>a</strong><strong>t  </strong><strong> </strong><strong>e</strong><strong>ko</strong><strong>no</strong><strong>m</strong><strong>i</strong> (pekerjaan, audit dan pembayaran cukai dan sebagainya);</li><li>Pihak LKEB akan <strong>m</strong><strong>e</strong><strong>m</strong><strong>b</strong><strong>u</strong><strong>a</strong><strong>t l</strong><strong>a</strong><strong>wat</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>ke</strong><strong> </strong><strong>ta</strong><strong>p</strong><strong>ak</strong><strong> </strong><strong>o</strong><strong>p</strong><strong>e</strong><strong>r</strong><strong>a</strong><strong>si</strong> pemohon yang sedia ada (jika ada) sebelum membuat cadangan/peruntukan yang diperlukan berdasarkan hasil penaksiran; dan</li><li><strong>K</strong><strong>e</strong><strong>l</strong><strong>ulu</strong><strong>s</strong><strong>an</strong>  akan  diberikan  jika  tidak  ada  sebarang  perkara berbangkit dan <strong>s</strong><strong>u</strong><strong>r</strong><strong>a</strong><strong>t</strong><strong> </strong><strong>a</strong><strong>k</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>d</strong><strong>i</strong><strong>k</strong><strong>e</strong><strong>lua</strong><strong>r</strong><strong>k</strong><strong>a</strong><strong>n</strong> kepada pemohon.</li></ul><ul class=\"ism-list bullet\"><li>Pemohon juga dikehendaki untuk:</li></ul><ul class=\"ism-list bullet\"><li><strong>Mengongsikan maklumat kewangan seperti penyata kewangan</strong> yang diaudit dan/atau <strong>akaun pengurusan untuk 3 tahun kebelakangan </strong>(penyata imbangan, untung rugi dan penyata aliran tunai) dan<strong> unjuran akaun kewangan untuk 10 tahun yang akan datang;</strong></li><li>Menyertakan <strong>cadangan pelan susun atur</strong> (<em>as built plan</em>) yang diluluskan;dan</li><li><strong>Memuatnaik maklumat</strong> seperti berikut:</li></ul><p class=\"ism-indent\">Kad pengenalan pemegang-pemegang saham /pemilik;</p><p class=\"ism-indent\">Sijil penubuhan /pendaftaran syarikat;</p><p class=\"ism-indent\">Sijil pemegang-pemegang saham (untuk Sdn Bhd);</p><p class=\"ism-indent\">Penyata tahunan terkini (untuk Sdn Bhd);</p><p class=\"ism-indent\">Resit pemfailan cukai bagi tempoh 3 tahun kebelakangan dari Bahagian Hasil, KKWE (untuk Sdn Bhd);</p><p class=\"ism-indent\">Borang X terkini;</p><p class=\"ism-indent\">Struktur organisasi;</p><p class=\"ism-indent\">Profil syarikat;</p><p class=\"ism-indent\">Tangkapan skrin pendaftaran Pusat Pekerjaan Brunei (PPB); dan</p><p class=\"ism-indent\">Tangkapan skrin <em>Business Reporting</em></p><ul class=\"ism-list bullet\"><li><strong>Tambah</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>u</strong><strong>ntuk</strong><strong> </strong><strong>Perm</strong><strong>o</strong><strong>hon</strong><strong>a</strong><strong>n bagi</strong><strong> </strong><strong>Tan</strong><strong>a</strong><strong>h</strong><strong> </strong><strong>E</strong><strong>x</strong><strong>-</strong><strong>T</strong><strong>OL</strong>:</li></ul><ul class=\"ism-list bullet\"><li><strong>S</strong><strong>u</strong><strong>r</strong><strong>a</strong><strong>t</strong><strong> </strong><strong>k</strong><strong>e</strong><strong>l</strong><strong>ulu</strong><strong>s</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>d</strong><strong>a</strong><strong>ri</strong><strong> </strong><strong>J</strong><strong>a</strong><strong>b</strong><strong>a</strong><strong>tan</strong><strong> </strong><strong>T</strong><strong>a</strong><strong>nah</strong>, Kementerian Pembangunan;</li><li><strong><em>Site</em></strong><strong><em> </em></strong><strong><em>S</em></strong><strong><em>u</em></strong><strong><em>rvey</em></strong><strong><em> </em></strong><strong><em>P</em></strong><strong><em>l</em></strong><strong><em>a</em></strong><strong><em>n</em></strong><strong> d</strong><strong>a</strong><strong>ri</strong><strong> </strong><strong>Ja</strong><strong>b</strong><strong>at</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>U</strong><strong>k</strong><strong>ur</strong>, Kementerian Pembangunan; dan</li><li><strong>Resit</strong><strong> </strong><strong>b</strong><strong>a</strong><strong>y</strong><strong>a</strong><strong>r</strong><strong>a</strong><strong>n</strong><strong> </strong><strong>cuk</strong><strong>a</strong><strong>i</strong><strong> </strong><strong>t</strong><strong>an</strong><strong>a</strong><strong>h</strong><strong> </strong><strong>terkini</strong><strong> </strong><strong>d</strong><strong>a</strong><strong>ri</strong><strong> </strong><strong>Ja</strong><strong>b</strong><strong>a</strong><strong>tan</strong><strong> </strong><strong>Tanah</strong>, Kementerian Pembangunan.</li></ul>","LegCo:15":"<ul class=\"ism-list bullet\"><li>Penyewa-penyewa tapak boleh <strong>m</strong><strong>e</strong><strong>nghad</strong><strong>a</strong><strong>p</strong><strong>k</strong><strong>an</strong><strong> </strong><strong>p</strong><strong>e</strong><strong>r</strong><strong>mo</strong><strong>honan</strong><strong> </strong><strong>b</strong><strong>a</strong><strong>gi m</strong><strong>e</strong><strong>m</strong><strong>b</strong><strong>uat k</strong><strong>e</strong><strong>r</strong><strong>j</strong><strong>a</strong><strong>-</strong><strong>k</strong><strong>e</strong><strong>r</strong><strong>j</strong><strong>a</strong><strong> </strong><strong>ubahs</strong><strong>u</strong><strong>ai</strong><strong> </strong><strong>ru</strong><strong>a</strong><strong>ng</strong> yang telah diberikan mengikut keperluan tertentu operasi mereka dengan <strong>m</strong><strong>e</strong><strong>m</strong><strong>a</strong><strong>t</strong><strong>u</strong><strong>hi</strong><strong> </strong><strong>g</strong><strong>a</strong><strong>r</strong><strong>i</strong><strong>sp</strong><strong>a</strong><strong>ndu</strong><strong> </strong><strong>y</strong><strong>a</strong><strong>ng d</strong><strong>i</strong><strong>tet</strong><strong>a</strong><strong>p</strong><strong>k</strong><strong>an</strong><strong> </strong><strong>i</strong><strong>a</strong><strong>i</strong><strong>tu ‘</strong><strong><em>BEDB Industrial Park Facility Design Guidelines’</em></strong>.</li></ul>","LegCo:16":"<ul class=\"ism-list bullet\"><li>Terdapat <strong>2 kadar sewa</strong> <strong>bagi tapak perindustrian</strong>:</li></ul><ul class=\"ism-list bullet\"><li><strong>BND3.50 meter persegi setiap tahun</strong> bagi tapak yang belum dimajukan <em>(greenfield); </em>dan</li><li><strong>BND7.00 meter persegi setiap tahun</strong> bagi tapak yang telah dimajukan <em>(brownfield).</em></li></ul>","LegCo:17":"<ul class=\"ism-list bullet\"><li>Pihak LKEB memainkan peranan sebagai <strong><em>k</em></strong><strong><em>e</em></strong><strong><em>y ena</em></strong><strong><em>b</em></strong><strong><em>l</em></strong><strong><em>e</em></strong><strong><em>r</em></strong> dalam <strong>mendokong pembangunan industri</strong> <strong>tempatan</strong> melalui inisiatif-inisiatif berikut:</li><li><strong>Penyediaan dan Penawaran Tapak Perindustrian</strong></li></ul><ul class=\"ism-list bullet\"><li><strong>Menawarkan tapak-tapak perindustrian</strong> kepada perusahaan mikro, kecil dan sederhana (PMKS) tempatan, khususnya pemain industri dalam sektor hiliran minyak dan gas, perkhidmatan serta logistik;</li><li><strong>Menyediakan kemudahan seperti kilang siap bina</strong> kepada PMKS yang terlibat dalam sektor permakanan, serta ruang komersial dan pejabat kepada PMKS dalam sektor ICT dan lain-lain; dan</li><li><strong>Me</strong><strong>nawa</strong><strong>r</strong><strong>k</strong><strong>a</strong><strong>n k</strong><strong>a</strong><strong>d</strong><strong>a</strong><strong>r</strong><strong> </strong><strong>sewa</strong><strong> </strong><strong>y</strong><strong>a</strong><strong>ng</strong><strong> </strong><strong>ko</strong><strong>m</strong><strong>p</strong><strong>et</strong><strong>i</strong><strong>tif</strong> di lokasi-lokasi strategik, bagi memastikan daya saing dan kemudahan akses kepada PMKS.</li></ul><ul class=\"ism-list bullet\"><li><strong>Pembangunan Kapasiti PMKS Tempatan</strong></li></ul><ul class=\"ism-list bullet\"><li>Hasil daripada kutipan sewa tapak-tapak perindustrian, LKEB <strong>menyumbang kepada pelaksanaan program-program pembangunan kapasiti PMKS</strong>.</li><li>Program-program <em>I</em><em>n</em><em>du</em><em>s</em><em>try</em><em> </em><em>B</em><em>u</em><em>s</em><em>in</em><em>e</em><em>ss</em><em> </em><em>A</em><em>c</em><em>a</em><em>d</em><em>e</em><em>m</em><em>y</em><em>,</em><em> </em><em>Mic</em><em>r</em><em>o  </em><em>B</em><em>o</em><em>o</em><em>tc</em><em>a</em><em>mp</em><em> </em><em>P</em><em>r</em><em>o</em><em>g</em><em>r</em><em>a</em><em>m</em><em>,</em><em> </em><em>P</em><em>r</em><em>e</em><em>-Accelerate</em> dan <em>A</em><em>c</em><em>c</em><em>e</em><em>l</em><em>e</em><em>r</em><em>a</em><em>te </em><em>Boo</em><em>tc</em><em>a</em><em>m</em><em>p</em>, skim pembiayaan LKEB, program <em>Mar</em><em>k</em><em>et A</em><em>c</em><em>c</em><em>e</em><em>ss,</em> dan <em>E</em><em>l</em><em>e</em><em>v</em><em>a</em><em>te</em> telah <strong>memainkan peranan penting dalam meningkatkan </strong>keupayaan PMKS.</li><li>Inisiatif-inisiatif ini membantu syarikat tempatan <strong>mempersiapkan diri untuk bersaing di pasaran tempatan, serantau (ASEAN), dan anta</strong><strong>r</strong><strong>a</strong><strong>b</strong><strong>a</strong><strong>n</strong><strong>gsa</strong> di masa hadapan.</li></ul>","LegCo:19":"<ul class=\"ism-list bullet\"><li>Menurut <em>database</em> penyewa tapak LKEB, kebanyakkan perusahaan mikro dan kecil menyewa kilang siap bina – <strong>di mana kadar sewa adalah lebih murah dan berpatutan </strong>(di sekitar BND640.00 – BND1,600.00 bergantung kepada lokasi dan saiz ruang yang disewakan)<strong> </strong>berbanding dengan tapak komersial persendirian.</li><li>Manakala bagi perusahaan PMKS yang sudah bersedia untuk mengembangkan perniagaan mereka, mereka boleh menyewa tapak perindustrian LKEB yang menggunakan kadar sewa tapak <em>brownfield/greenfield</em>.</li></ul>","LegCo:20":"<ul class=\"ism-list bullet\"><li>Bagi tapak perindustrian LKEB, pihak LKEB ada <strong>menyediakan penyambungan bekalan air serta elektrik </strong><strong><em>(tapping points) </em></strong><strong>ke lot penyewa dan akses jalanraya</strong>.</li><li>Selain itu, penyewa dikehendaki untuk memohon ke pihak berkuasa yang berkaitan bagi penyambungan telekomunikasi, penyediaan <em>manhole</em> dan <em>ducting</em>.</li><li>Selain itu, LKEB akan <strong>menyediakan infrastruktur bagi peniaga-peniaga tempatan dan pelabur-pelabur asing</strong> yang ingin melabur dan membangunkan fasiliti mengikut keperluan perniagaan mereka di lot yang belum dimajukan <em>(greenfield)</em> di tapak perindustrian LKEB.</li></ul>","LegCo:21":"<ul class=\"ism-list bullet\"><li>Pihak LKEB sedang berusaha untuk <strong>mengenalpasti perniagaan-perniagaan yang berpotensi untuk mengembangkan operasi perniagaan</strong> sebagai sebahagian daripada usaha untuk memajukan ekosistem yang teguh/mantap di tapak perindustrian LKEB.</li></ul><p>Di samping itu, pihak LKEB juga merancang untuk <strong>meluaskan tapak perindustrian sedia ada yang akan dilengkapi dengan infrastruktur dan utiliti seperti penyambungan bekalan air serta elektrik (</strong><strong><em>tapping points</em></strong><strong>)</strong> ke lot penyewa dan akses jalan raya.</p>","LegCo:22":"<ul class=\"ism-list bullet\"><li>Pihak LKEB pada masa ini sedang <strong>mengenal pasti  kekurangan-kekurangan yang dihadapi oleh penyewa/PMKS</strong> agar dapat membantu mereka dalam mengurangkan modal perniagaan dengan menyediakan kemudahan-kemudahan serta infrastruktur yang sedia ada.</li><li>LKEB juga telah <strong>menyelaras fokus pembangunan dan penyediaan tapak perindustrian dengan </strong><strong><em>Brunei Economic Blueprint</em></strong><strong> dan </strong><strong><em>Industrial Roadmap</em></strong> di bawah Kementerian Kewangan dan Ekonomi (KKWE), berdasarkan lima sektor-sektor utama yang dikenalpasti.</li></ul>","LegCo:23":"<ul class=\"ism-list bullet\"><li>PMKS boleh menghadapkan permohonan mereka secara dalam talian melalui platform <em>InSiteAps </em>dan akan diproses mengikut kriteria kelayakan yang ditetapkan oleh pihak LKEB.</li></ul>","LegCo:18":"<p class=\"ism-subheading\"><strong>Kriteria tambahan:</strong></p><ul class=\"ism-list bullet\"><li>Aktiviti yang dijalankan mestilah <strong>bersesuaian dan sepadan</strong> dengan tujuan <strong>penggunaan tanah/kilang siap bina</strong>, seperti aktiviti pembuatan, pemprosesan dan <em>value-adding</em>;</li><li>Syarikat yang memohon mesti <strong>berdaftar dengan Pusat Pekerjaan Brunei (PPB)</strong>;</li><li>Syarikat mestilah <strong>berdaftar serta sentiasa mengemas kini maklumat perniagaan melalui platform ‘</strong><strong><em>Online Business Reporting’</em></strong><em>;</em></li><li>Bagi penyewa sedia ada, pemohon mesti <strong>mempunyai perjanjian pajakan/penyewaan yang sah</strong> dan tiada pelanggaran syarat, serta <strong>tidak mempunyai tunggakan pembayaran untuk pajakan/sewa dan utiliti</strong> (termasuk bil elektrik);</li><li>Memastikan tenaga kerja tempatan yang sedia ada dan yang akan datang memenuhi nisbah minima yang ditetapkan mengikut sektor industri; dan</li><li>Syarikat Sendirian Berhad mesti menjalankan audit tetap, memastikan semua pemfailan sentiasa dikemas kini, dan membayar cukai seperti yang diwajibkan.</li></ul>"};
+const searchText=new Map(data.map(d=>{const div=document.createElement('div');div.innerHTML=richAnswers[`${d[1]}:${d[4]}`]||'';return [`${d[1]}:${d[4]}`,(d.join(' ')+' '+div.textContent).toLowerCase()];}));
 el('ism-categories').innerHTML=categories.map(c=>`<button type="button" class="cursor-interaction" aria-pressed="${c===category}" data-category="${c}"><span>${c}</span><small>${c==='All FAQs'?data.length:data.filter(d=>d[0]===c).length}</small></button>`).join('');
 
 const COMMENTS = {
@@ -221,11 +252,34 @@ const AUTH_STORAGE='ismFaqAuthSession';
 let authSession=null,authMember=false;
 try{authSession=JSON.parse(localStorage.getItem(AUTH_STORAGE)||'null');}catch(_){authSession=null;}
 function authHeaders(extra={}){return {apikey:COMMENTS.key,...(authSession?.access_token?{Authorization:'Bearer '+authSession.access_token}:{}),...extra};}
+let refreshPromise=null;
+function saveSession(session){
+ if(session&&!session.expires_at)session.expires_at=Math.floor(Date.now()/1000)+(session.expires_in||3600);
+ authSession=session;
+ if(session)localStorage.setItem(AUTH_STORAGE,JSON.stringify(session));else localStorage.removeItem(AUTH_STORAGE);
+}
+async function fetchJSON(path,options={},headers=authHeaders(options.headers||{})){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+ try{
+  const response=await fetch(COMMENTS.url+path,{...options,headers,signal:controller.signal});
+  let body=null;try{body=await response.json();}catch(_){}
+  if(!response.ok){const error=new Error(body?.msg||body?.error_description||body?.message||'Request failed ('+response.status+').');error.status=response.status;throw error;}
+  return body;
+ }finally{clearTimeout(timer);}
+}
+async function refreshSession(){
+ if(!authSession?.refresh_token)return;
+ if(!refreshPromise){const token=authSession.refresh_token;refreshPromise=(async()=>{
+  const session=await fetchJSON('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:JSON.stringify({refresh_token:token})},{apikey:COMMENTS.key,'Content-Type':'application/json'});
+  if(authSession?.refresh_token===token)saveSession(session);
+ })().finally(()=>{refreshPromise=null;});}
+ return refreshPromise;
+}
 async function authRequest(path,options={}){
- const response=await fetch(COMMENTS.url+path,{...options,headers:authHeaders(options.headers||{})});
- let body=null;try{body=await response.json();}catch(_){ }
- if(!response.ok)throw new Error(body?.msg||body?.error_description||body?.message||'Sign-in failed.');
- return body;
+ const authenticated=!path.startsWith('/auth/v1/token');
+ if(authenticated&&authSession?.refresh_token&&(!authSession.expires_at||authSession.expires_at*1000<Date.now()+60000))await refreshSession();
+ try{return await fetchJSON(path,options);}
+ catch(error){if(authenticated&&error.status===401&&authSession?.refresh_token){await refreshSession();return fetchJSON(path,options);}throw error;}
 }
 async function checkMembership(){
  if(!authSession?.user?.id||!authSession?.access_token){authMember=false;return false;}
@@ -243,16 +297,16 @@ function authBar(){
 }
 function authStatus(message,error=false){const node=root.querySelector('.ism-auth-status');if(node){node.textContent=message;node.dataset.error=String(error);}}
 function displayName(){const metadata=authSession?.user?.user_metadata||{};return String(metadata.display_name||metadata.full_name||metadata.name||authSession?.user?.email||'SDT member').trim();}
-async function signOut(){authSession=null;authMember=false;localStorage.removeItem(AUTH_STORAGE);authBar();render();}
+async function signOut(){const token=authSession?.access_token;saveSession(null);authMember=false;stopCommentFeatures();authBar();render();if(token)fetchJSON('/auth/v1/logout',{method:'POST'},{apikey:COMMENTS.key,Authorization:'Bearer '+token}).catch(()=>{});}
 el('ism-auth').addEventListener('click',e=>{if(e.target.closest('[data-auth-signout]'))signOut();});
 el('ism-auth').addEventListener('submit',async e=>{
  if(!e.target.matches('[data-auth-form]'))return;e.preventDefault();
  const form=e.target;const button=form.querySelector('button');button.disabled=true;authStatus('Signing in…');
  try{
   const result=await authRequest('/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:form.elements.email.value.trim(),password:form.elements.password.value})});
-  authSession=result;localStorage.setItem(AUTH_STORAGE,JSON.stringify(result));
+  saveSession(result);
   if(!await checkMembership())throw new Error('This account is not on the SDT access list.');
-  authBar();render();
+  authBar();render();startCommentFeatures();
  }catch(error){authSession=null;authMember=false;localStorage.removeItem(AUTH_STORAGE);authStatus(error.message,true);}
  finally{button.disabled=false;}
 });
@@ -267,20 +321,11 @@ function commentPanel(key){
  <div class="ism-comments-head"><h3>Comments</h3><button type="button" class="ism-button" data-comments-refresh>Refresh</button></div>
  <div class="ism-comment-list"></div><button type="button" class="ism-button" data-comments-more hidden>More comments</button>
  <form class="ism-comment-form">
- <label>Comment<textarea name="comment_text" maxlength="2000" required placeholder="Add a comment about this FAQ…"></textarea></label>
+ <label>Comment<textarea name="comment_text" maxlength="2000" required placeholder="Add a comment… Type @ to mention an SDT member" aria-autocomplete="list" aria-expanded="false" aria-controls="mentions-${key.replace(':','-')}" aria-describedby="mention-help-${key.replace(':','-')}"></textarea></label><div class="ism-mention-list" id="mentions-${key.replace(':','-')}" data-mention-list role="listbox" aria-label="SDT members" hidden></div><small id="mention-help-${key.replace(':','-')}" class="ism-mention-help">Type @ and select a name to notify an SDT member.</small>
  <button type="submit" class="ism-button ism-primary">Post comment</button>
  </form><p class="ism-comment-status" role="status" aria-live="polite"></p></div></section>`;
 }
-async function commentsRequest(query,options={}){
- const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),15000);
- try{
-  const response=await fetch(COMMENTS.url+'/rest/v1/faq_comments'+query,{
-   ...options,signal:controller.signal,headers:authHeaders(options.headers||{})
-  });
-  if(!response.ok)throw new Error('Request failed ('+response.status+').');
-  return response.status===204?null:await response.json();
- }finally{clearTimeout(timer);}
-}
+async function commentsRequest(query,options={}){return authRequest('/rest/v1/faq_comments'+query,options);}
 function commentStatus(panel,message,error=false){const status=panel.querySelector('.ism-comment-status');status.textContent=message;status.dataset.error=String(error);}
 async function loadComments(panel,append=false){
  if(panel.dataset.loading==='true')return;
@@ -293,7 +338,7 @@ async function loadComments(panel,append=false){
   const rows=await commentsRequest('?'+query);
   const list=panel.querySelector('.ism-comment-list');if(!append)list.replaceChildren();
   for(const row of rows){
-   const article=document.createElement('article');article.className='ism-comment';
+   const article=document.createElement('article');article.className='ism-comment';article.dataset.commentId=row.id;
    const meta=document.createElement('div');meta.className='ism-comment-meta';
    const name=document.createElement('strong');name.textContent=row.author_name;
    const time=document.createElement('time');time.dateTime=row.created_at;time.textContent=new Date(row.created_at).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
@@ -332,8 +377,8 @@ el('ism-results').addEventListener('submit',async event=>{
  if(Date.now()-(lastPost.get(key)||0)<15000){commentStatus(panel,'Please wait a few seconds before posting again.',true);return;}
  pendingPosts.add(key);const button=form.querySelector('[type="submit"]');button.disabled=true;commentStatus(panel,'Posting…');
  try{
-  await commentsRequest('',{method:'POST',headers:{'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify({faq_id:key,author_name:displayName(),comment_text:comment})});
-  lastPost.set(key,Date.now());commentDrafts.set(key,{text:''});
+  await commentsRequest('',{method:'POST',headers:{'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify({faq_id:key,author_name:displayName(),comment_text:comment,mention_user_ids:selectedMentions(key,comment)})});
+  lastPost.set(key,Date.now());commentDrafts.set(key,{text:''});mentionSelections.delete(key);closeMentions();
   const current=Array.from(root.querySelectorAll('.ism-comments')).find(p=>p.dataset.faq===key)||panel;
   current.querySelector('textarea').value='';commentStatus(current,'Comment posted.');
   await loadComments(current);
@@ -345,10 +390,162 @@ el('ism-results').addEventListener('submit',async event=>{
   for(const p of root.querySelectorAll('.ism-comments'))if(p.dataset.faq===key)p.querySelector('[type="submit"]').disabled=false;
  }
 });
+// In-page notification inbox. Polling avoids adding another client library.
+let sdtDirectory=[], notifications=[], notificationsOffset=0, notificationsMore=false;
+let inboxUnread=0, notificationTimer=null, notificationBusy=false, notificationReady=false;
+let seenNotifications=new Set(), inboxOpen=false, notifyAll=false, notificationError='';
+let featureGeneration=0, mentionState=null;
+const mentionSelections=new Map();
+function rpc(name,args={}){return authRequest('/rest/v1/rpc/'+name,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(args)});}
+function faqTitle(key){const row=data.find(d=>`${d[1]}:${d[4]}`===key);return row?row[5]:key;}
+function setupNotificationUI(){
+ const header=root.querySelector('.ism-top');
+ const wrap=document.createElement('div');wrap.id='ism-notification-wrap';wrap.hidden=true;
+ wrap.innerHTML=`<button type="button" class="ism-button ism-small" id="ism-notification-toggle" aria-expanded="false" aria-controls="ism-notification-panel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>Notifications <span id="ism-unread" hidden>0</span></button>
+ <section id="ism-notification-panel" aria-label="Your notifications" hidden>
+ <div class="ism-inbox-head"><strong>Notifications</strong><button type="button" class="ism-button ism-small" id="ism-inbox-close" aria-label="Close notifications">Close</button></div>
+ <label class="ism-watch-label"><input type="checkbox" id="ism-watch-all">Notify me of all new comments</label>
+ <p class="ism-inbox-hint">Mentions notify you automatically. Your own comments are excluded.</p>
+ <div class="ism-inbox-actions"><button class="ism-button ism-small" type="button" id="ism-inbox-refresh">Refresh</button><button class="ism-button ism-small" type="button" id="ism-inbox-read">Mark all as read</button></div>
+ <p id="ism-inbox-status" role="status"></p><div id="ism-inbox-list"></div>
+ <button class="ism-button ism-small" type="button" id="ism-inbox-more" hidden>Older notifications</button></section>`;
+ header.append(wrap);
+ const toast=document.createElement('div');toast.id='ism-notification-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');toast.hidden=true;root.append(toast);
+ el('ism-notification-toggle').addEventListener('click',()=>{setInbox(!inboxOpen);if(inboxOpen)pollNotifications();});
+ el('ism-inbox-close').addEventListener('click',()=>{setInbox(false);el('ism-notification-toggle').focus();});
+ el('ism-inbox-refresh').addEventListener('click',()=>pollNotifications());
+ el('ism-inbox-more').addEventListener('click',()=>pollNotifications(true));
+ el('ism-inbox-read').addEventListener('click',async()=>{
+  const button=el('ism-inbox-read');button.disabled=true;
+  try{await authRequest('/rest/v1/ism_notifications?recipient_id=eq.'+authSession.user.id+'&read_at=is.null',{method:'PATCH',headers:{'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({read_at:new Date().toISOString()})});await pollNotifications();}
+  catch(_){el('ism-inbox-status').textContent='Could not mark notifications as read. Please try again.';}
+  finally{button.disabled=false;}
+ });
+ el('ism-watch-all').addEventListener('change',async e=>{
+  const input=e.target,wanted=input.checked;input.disabled=true;
+  try{await authRequest('/rest/v1/ism_comment_watchers'+(wanted?'':'?user_id=eq.'+authSession.user.id),{method:wanted?'POST':'DELETE',headers:{'Content-Type':'application/json',Prefer:wanted?'resolution=ignore-duplicates,return=minimal':'return=minimal'},...(wanted?{body:JSON.stringify({user_id:authSession.user.id})}:{})});notifyAll=wanted;el('ism-inbox-status').textContent=wanted?'All new comment alerts enabled for your account.':'You will receive mention alerts only.';}
+  catch(_){input.checked=notifyAll;el('ism-inbox-status').textContent='Could not save this setting. Run the SQL setup first, then try again.';}
+  finally{input.disabled=false;}
+ });
+ el('ism-inbox-list').addEventListener('click',async e=>{
+  const button=e.target.closest('[data-notification-id]');if(!button)return;
+  const n=notifications.find(n=>n.id===button.dataset.notificationId);if(!n)return;
+  button.disabled=true;
+  try{await openNotification(n);}
+  catch(_){el('ism-inbox-status').textContent='Could not open this notification. Please refresh and try again.';}
+  finally{button.disabled=false;}
+ });
+ document.addEventListener('click',e=>{if(inboxOpen&&!wrap.contains(e.target))setInbox(false);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&inboxOpen){setInbox(false);el('ism-notification-toggle').focus();}});
+ window.addEventListener('focus',()=>{if(authMember)pollNotifications();});
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&authMember)pollNotifications();});
+}
+function setInbox(open){inboxOpen=open;el('ism-notification-panel').hidden=!open;el('ism-notification-toggle').setAttribute('aria-expanded',String(open));}
+function notificationUI(){
+ el('ism-notification-wrap').hidden=!authMember;
+ el('ism-unread').hidden=inboxUnread===0;el('ism-unread').textContent=inboxUnread>99?'99+':String(inboxUnread);
+ el('ism-notification-toggle').setAttribute('aria-label',`Notifications, ${inboxUnread} unread`);
+ el('ism-watch-all').checked=notifyAll;
+ const host=el('ism-inbox-list');host.replaceChildren();
+ for(const n of notifications){
+  const button=document.createElement('button');button.type='button';button.className='ism-inbox-item'+(n.read_at?'':' is-unread');button.dataset.notificationId=n.id;
+  const title=document.createElement('strong');title.textContent=n.actor_name+(n.kind==='mention'?' mentioned you':' posted a comment');
+  const question=document.createElement('span');question.textContent=faqTitle(n.faq_id);
+  const time=document.createElement('time');time.dateTime=n.created_at;time.textContent=new Date(n.created_at).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'})+(n.read_at?'':' · Unread');
+  button.append(title,question,time);host.append(button);
+ }
+ if(!notifications.length){const p=document.createElement('p');p.className='ism-inbox-hint';p.textContent=notificationError?'Notifications are unavailable.':notificationReady?'No notifications yet.':'Loading notifications…';host.append(p);}
+ el('ism-inbox-more').hidden=!notificationsMore;el('ism-inbox-status').textContent=notificationError;
+}
+function stopCommentFeatures(){
+ featureGeneration++;clearInterval(notificationTimer);notificationTimer=null;sdtDirectory=[];notifications=[];inboxUnread=0;notificationReady=false;notificationBusy=false;seenNotifications.clear();notifyAll=false;notificationError='';mentionSelections.clear();mentionState=null;commentDrafts.clear();setInbox(false);el('ism-notification-toast').hidden=true;notificationUI();
+}
+async function startCommentFeatures(){
+ const generation=++featureGeneration;clearInterval(notificationTimer);notificationReady=false;seenNotifications.clear();notificationUI();
+ try{
+  const [directory,watchers]=await Promise.all([rpc('ism_sdt_directory'),authRequest('/rest/v1/ism_comment_watchers?select=user_id&user_id=eq.'+authSession.user.id)]);
+  if(generation!==featureGeneration||!authMember)return;
+  sdtDirectory=directory;notifyAll=watchers.length>0;notificationError='';
+ }catch(_){if(generation!==featureGeneration)return;notificationError='Notifications and mentions need the SQL setup. After running it, sign out and sign in again.';notificationUI();}
+ await pollNotifications();
+ if(generation!==featureGeneration||!authMember)return;
+ notificationTimer=setInterval(()=>{if(!document.hidden)pollNotifications();},30000);
+}
+async function pollNotifications(append=false){
+ if(!authMember||notificationBusy)return;notificationBusy=true;const generation=featureGeneration;
+ el('ism-inbox-more').disabled=true;
+ try{
+  const user=authSession.user.id;
+  const params=new URLSearchParams({select:'id,faq_id,comment_id,actor_name,kind,created_at,read_at',recipient_id:'eq.'+user,order:'created_at.desc,id.desc',limit:'50'});
+  // Keyset paging keeps older notifications stable when new ones arrive.
+  if(append&&notifications.length){const last=notifications[notifications.length-1];params.set('or',`(created_at.lt.${last.created_at},and(created_at.eq.${last.created_at},id.lt.${last.id}))`);}
+  const [rows,count]=await Promise.all([
+   authRequest('/rest/v1/ism_notifications?'+params),
+   rpc('ism_unread_count')
+  ]);
+  if(generation!==featureGeneration||!authMember)return;
+  const fresh=notificationReady&&!append?rows.filter(n=>!n.read_at&&!seenNotifications.has(n.id)):[];
+  rows.forEach(n=>seenNotifications.add(n.id));
+  notifications=append?[...notifications,...rows.filter(n=>!notifications.some(old=>old.id===n.id))]:rows;
+  notificationsOffset=notifications.length;notificationsMore=rows.length===50;inboxUnread=Number(count||0);notificationReady=true;notificationError='';notificationUI();
+  if(fresh.length){const toast=el('ism-notification-toast');toast.replaceChildren();const text=document.createElement('span');text.textContent=fresh.length===1?fresh[0].actor_name+(fresh[0].kind==='mention'?' mentioned you.':' posted a comment.'):`${fresh.length} new notifications.`;const view=document.createElement('button');view.type='button';view.className='ism-button ism-small';view.textContent='View';view.onclick=()=>{setInbox(true);toast.hidden=true;};const close=document.createElement('button');close.type='button';close.className='ism-button ism-small';close.textContent='Dismiss';close.onclick=()=>toast.hidden=true;toast.append(text,view,close);toast.hidden=false;}
+ }catch(_){if(generation===featureGeneration){notificationError='Could not load notifications. Check the SQL setup and connection, then click Refresh.';notificationUI();}}
+ finally{if(generation===featureGeneration){notificationBusy=false;el('ism-inbox-more').disabled=false;}}
+}
+async function openNotification(n){
+ if(!data.some(d=>`${d[1]}:${d[4]}`===n.faq_id))throw new Error('FAQ unavailable');
+ category='All FAQs';el('ism-search-input').value='';root.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));render();
+ const panel=Array.from(root.querySelectorAll('.ism-comments')).find(p=>p.dataset.faq===n.faq_id);
+ if(!panel)throw new Error('FAQ unavailable');
+ panel.closest('details').open=true;panel.querySelector('.ism-comments-body').hidden=false;const toggle=panel.querySelector('[data-comments-toggle]');toggle.textContent='Hide comments';toggle.setAttribute('aria-expanded','true');
+ let loaded=await loadComments(panel);
+ // Reach a mentioned comment even when it is beyond the first 50 comments.
+ while(loaded&&!panel.querySelector(`[data-comment-id="${n.comment_id}"]`)&&!panel.querySelector('[data-comments-more]').hidden){loaded=await loadComments(panel,true);}
+ if(!loaded)throw new Error('Comment unavailable');
+ const target=panel.querySelector(`[data-comment-id="${n.comment_id}"]`);
+ if(target){target.classList.add('ism-comment-highlight');target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({behavior:'smooth',block:'center'});}
+ else{panel.scrollIntoView({behavior:'smooth',block:'center'});commentStatus(panel,'This comment is no longer available.');}
+ setInbox(false);
+ if(!n.read_at){try{await authRequest('/rest/v1/ism_notifications?id=eq.'+n.id,{method:'PATCH',headers:{'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({read_at:new Date().toISOString()})});await pollNotifications();}catch(_){commentStatus(panel,'Comment opened, but could not mark the notification as read. Try again later.',true);}}
+}
+function closeMentions(){if(mentionState){mentionState.form.querySelector('[data-mention-list]').hidden=true;mentionState.textarea.removeAttribute('aria-activedescendant');mentionState.textarea.setAttribute('aria-expanded','false');}mentionState=null;}
+function updateMentions(textarea){
+ const form=textarea.closest('.ism-comment-form');const host=form.querySelector('[data-mention-list]');
+ const prefix=textarea.value.slice(0,textarea.selectionStart);const match=prefix.match(/(?:^|\s)@([^@\n]{0,60})$/);
+ if(!match){closeMentions();host.hidden=true;return;}
+ const term=match[1].toLocaleLowerCase();const rows=sdtDirectory.filter(u=>u.user_id!==authSession?.user?.id&&u.display_name.toLocaleLowerCase().includes(term)).slice(0,10);
+ closeMentions();host.replaceChildren();host.hidden=false;
+ if(!rows.length){host.textContent=sdtDirectory.length?'No matching SDT members.':'Member list unavailable. Run the SQL setup, then sign in again.';return;}
+ mentionState={form,textarea,rows,index:0,start:textarea.selectionStart-match[1].length-1,end:textarea.selectionStart};
+ textarea.setAttribute('aria-expanded','true');
+ for(let i=0;i<rows.length;i++){const b=document.createElement('button');b.type='button';b.setAttribute('role','option');b.id=host.id+'-'+i;b.dataset.mentionIndex=String(i);b.textContent=rows[i].display_name;b.title=rows[i].display_name;b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>chooseMention(i));host.append(b);}
+ highlightMention();
+}
+function highlightMention(){if(!mentionState)return;const {form,index,textarea}=mentionState;const options=form.querySelectorAll('[data-mention-index]');options.forEach((b,i)=>b.setAttribute('aria-selected',String(i===index)));textarea.setAttribute('aria-activedescendant',options[index].id);}
+function chooseMention(index){
+ if(!mentionState)return;const {textarea,form,rows,start,end}=mentionState,user=rows[index];if(!user)return;
+ const key=form.closest('.ism-comments').dataset.faq;const token='@'+user.display_name;
+ const updated=textarea.value.slice(0,start)+token+' '+textarea.value.slice(end);
+ if(updated.length>2000){commentStatus(form.closest('.ism-comments'),'The mention would exceed the 2,000-character limit.',true);return;}
+ textarea.value=updated;const caret=start+token.length+1;textarea.focus();textarea.setSelectionRange(caret,caret);
+ if(!mentionSelections.has(key))mentionSelections.set(key,new Map());mentionSelections.get(key).set(user.user_id,user.display_name);
+ commentDrafts.set(key,{text:updated});closeMentions();
+}
+function selectedMentions(key,text){return Array.from(mentionSelections.get(key)||[]).filter(([id,name])=>text.includes('@'+name)).map(([id])=>id);}
+el('ism-results').addEventListener('input',e=>{if(e.target.matches('textarea[name="comment_text"]'))updateMentions(e.target);});
+el('ism-results').addEventListener('keydown',e=>{
+ if(!mentionState||e.target!==mentionState.textarea)return;
+ if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();mentionState.index=(mentionState.index+(e.key==='ArrowDown'?1:-1)+mentionState.rows.length)%mentionState.rows.length;highlightMention();}
+ else if(e.key==='Enter'){e.preventDefault();chooseMention(mentionState.index);}
+ else if(e.key==='Escape'){e.preventDefault();closeMentions();}
+});
+document.addEventListener('click',e=>{if(mentionState&&!mentionState.form.contains(e.target))closeMentions();});
+setupNotificationUI();
+
 function render(){
+ closeMentions();
  const query=el('ism-search-input').value.toLowerCase().trim().split(/\s+/).filter(Boolean);
- const language=el('ism-language').value;
- const matches=data.filter(d=>(category==='All FAQs'||d[0]===category)&&(!language||d[2]===language)&&query.every(q=>d.join(' ').toLowerCase().includes(q)));
+ const matches=data.filter(d=>(category==='All FAQs'||d[0]===category)&&query.every(q=>searchText.get(`${d[1]}:${d[4]}`).includes(q)));
  el('ism-title').textContent=category;
  el('ism-count').textContent=`${matches.length} questions`;
  el('ism-results').innerHTML=matches.map((d,i)=>{
@@ -362,10 +559,10 @@ function render(){
  }
 }
 el('ism-categories').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;category=b.dataset.category;root.querySelectorAll('[data-category]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
-['ism-search-input','ism-language'].forEach(id=>el(id).addEventListener(id==='ism-search-input'?'input':'change',render));
+el('ism-search-input').addEventListener('input',render);
 render();
 authBar();
-if(authSession)checkMembership().then(()=>{authBar();render();});
+if(authSession)checkMembership().then(()=>{authBar();render();if(authMember)startCommentFeatures();});
 })();
 </script>
 <noscript>Please enable JavaScript to search and view the FAQs.</noscript>
